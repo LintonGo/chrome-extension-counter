@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "扩展显示自定义数量",
+  "version": "1.0",
+  "description": "Chrome 扩展数量显示演示",
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"],
+  "icons": {
+    "128": "icon.png"
+  }
+}
