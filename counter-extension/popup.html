@@ -1,38 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    body {
-      width: 200px;
-      padding: 10px;
-      font-family: Arial, sans-serif;
-    }
-    .controls {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    button {
-      padding: 8px 12px;
-      cursor: pointer;
-      background: #4688F1;
-      color: white;
-      border: none;
-      border-radius: 4px;
-    }
-    #count {
-      text-align: center;
-      font-size: 18px;
-      margin: 10px 0;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="controls">
-    <button id="add">+1</button>
-    <button id="reset">Reset</button>
+  <div class="container">
+    <h1>设置计数器</h1>
+    <div class="input-group">
+      <input type="number" id="numberInput" placeholder="输入新数值">
+      <button id="setButton">设置</button>
+    </div>
+    <p>当前数值会直接显示在插件图标上</p>
   </div>
-  <div id="count">Loading...</div>
   <script src="popup.js"></script>
 </body>
 </html>

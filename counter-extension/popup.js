@@ -1,22 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const countDisplay = document.getElementById('count');
-  
-  // 获取当前计数
-  chrome.runtime.sendMessage({ action: 'get' }, (response) => {
-    countDisplay.textContent = response.count;
-  });
+  const numberInput = document.getElementById('numberInput')
+  const setButton = document.getElementById('setButton')
 
-  // 增加按钮
-  document.getElementById('add').addEventListener('click', () => {
-    chrome.runtime.sendMessage({ action: 'add', value: 1 }, (response) => {
-      countDisplay.textContent = response?.count || 'Error';
-    });
-  });
+  // 初始化时显示当前值
+  chrome.storage.local.get(['counter'], (result) => {
+    numberInput.placeholder = result.counter || '0'
+  })
 
-  // 重置按钮
-  document.getElementById('reset').addEventListener('click', () => {
-    chrome.runtime.sendMessage({ action: 'reset' }, (response) => {
-      countDisplay.textContent = response.count;
-    });
-  });
-});
+  setButton.addEventListener('click', () => {
+    const newValue = numberInput.value.trim()
+    if (!newValue) return
+    
+    // 格式验证
+    if (!/^-?\d+$/.test(newValue)) {
+      alert('请输入整数')
+      return
+    }
+
+    chrome.storage.local.set({ counter: newValue }, () => {
+      console.log('Value saved:', newValue)
+      numberInput.value = ''
+      window.close()
+    })
+  })
+})
